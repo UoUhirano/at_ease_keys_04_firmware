@@ -1,7 +1,7 @@
 # .github/workflows/build.yml
 #
 # ZMKファームウェアのビルドを定義するGitHub Actionsワークフロー
-# YAML構文エラーを修正したバージョンです。
+# 正しい strategy/matrix 構文で修正したバージョンです。
 
 name: 'Build ZMK Firmware'
 
@@ -9,13 +9,12 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
-    # ZMK公式のビルドワークフローを再利用する
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-    # ビルドワークフローに渡すパラメータ
-    with:
-      # 'matrix' に渡す値を、'|' を使って複数行の文字列として定義します。
-      # これにより、後続の 'include:' が正しく解釈されます。
-      matrix: |
+    # GitHub Actionsの標準機能で、ビルドの組み合わせを定義
+    strategy:
+      # ビルドが一つ失敗しても、他のビルドは継続する
+      fail-fast: false
+      matrix:
+        # include リスト内にビルドしたい board と shield のペアを記述
         include:
           # 左手用のビルド設定
           - board: seeed_xiao_nrf52840
@@ -23,3 +22,11 @@ jobs:
           # 右手用のビルド設定
           - board: seeed_xiao_nrf52840
             shield: at_ease_keys_04_right
+
+    # ZMK公式のビルドワークフローを再利用する
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    # ビルドワークフローに渡すパラメータ
+    with:
+      # matrixで定義した値を、入力として渡す
+      board: ${{ matrix.board }}
+      shield: ${{ matrix.shield }}
