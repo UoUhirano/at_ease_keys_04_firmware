@@ -1,13 +1,9 @@
 # config/build.yaml
-#
-# このファイルでビルドしたいキーボードの組み合わせを定義します。
-# ZMKのビルドシステムがこのファイルを自動的に読み取ります。
+# ビルドしたいキーボードの組み合わせを定義します。
 
 include:
-  # 左手用のビルド設定
   - board: seeed_xiao_nrf52840
     shield: at_ease_keys_04_left
 
-  # 右手用のビルド設定
   - board: seeed_xiao_nrf52840
     shield: at_ease_keys_04_right
