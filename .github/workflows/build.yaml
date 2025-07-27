@@ -1,8 +1,0 @@
-settings:
-  zmk_boards_dir: "boards"
-
-include:
-  - board: seeeduino_xiao_ble
-    shield: at_ease_keys_04_left
-  - board: seeeduino_xiao_ble
-    shield: at_ease_keys_04_right
