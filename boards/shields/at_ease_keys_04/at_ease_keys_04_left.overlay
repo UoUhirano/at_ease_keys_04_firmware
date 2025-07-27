@@ -1,0 +1,7 @@
+/*
+ * config/boards/shields/at_ease_keys_04/at_ease_keys_04_left.overlay
+ *
+ * 左手側キーボード用の設定ファイル
+ */
+
+#include "at_ease_keys_04.overlay"
