@@ -1,0 +1,37 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+#define BASE 0
+#define NUM  1
+#define NAV  2
+
+#define NUM_TL &to NUM
+#define NAV_ML &mo NAV
+
+// プレースホルダー: これらのカスタムビヘイビアは別途定義が必要です
+#define SYM_LH &none
+#define NAV_LH &none
+
+#define LEFT_BASE_1  &kp NON_US_HASH, &SYM_LH,       &kp Q, &kp W, &kp E, &kp R, &kp T, &kp KP_DIVIDE
+#define LEFT_BASE_2  &NAV_ML,         &kp LALT,      &kp A, &kp S, &kp D, &kp F, &kp G, &NUM_TL
+#define LEFT_BASE_3  &kp LSHFT,       &kp LSHFT,     &kp Z, &kp X, &kp C, &kp V, &kp B, &kp NON_US_BSLH
+#define LEFT_BASE_4  &kp LCTRL,       &kp LGUI,      &kp BSPC, &kp DEL, &kp ESC, &kp TAB, &kp SPACE, &kp ENTER
+
+#define LEFT_NUM_1   &kp N7, &kp N8, &kp N9, &kp KP_STAR, &kp KP_SLASH, &trans, &trans, &trans
+#define LEFT_NUM_2   &kp N4, &kp N5, &kp N6, &kp KP_MINUS, &kp KP_PLUS, &trans, &trans, &trans
+#define LEFT_NUM_3   &kp N1, &kp N2, &kp N3, &kp EQUAL, &kp BSLH, &trans, &trans, &trans
+#define LEFT_NUM_4   &none, &none, &trans, &kp N0, &kp DOT, &none, &none, &trans
+
+#define LEFT_NAV_1   &kp F7, &kp F8, &kp F9, &kp F10, &kp F11, &kp F12, &trans, &trans
+#define LEFT_NAV_2   &kp F4, &kp F5, &kp F6, &kp LBRC, &kp RBRC, &trans, &trans, &trans
+#define LEFT_NAV_3   &kp F1, &kp F2, &kp F3, &kp LPAR, &kp RPAR, &trans, &trans, &trans
+#define LEFT_NAV_4   &none, &none, &trans, &trans, &trans, &none, &none, &trans
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+        layer_0 { bindings = <LEFT_BASE_1 LEFT_BASE_2 LEFT_BASE_3 LEFT_BASE_4>; };
+        layer_1 { bindings = <LEFT_NUM_1 LEFT_NUM_2 LEFT_NUM_3 LEFT_NUM_4>; };
+        layer_2 { bindings = <LEFT_NAV_1 LEFT_NAV_2 LEFT_NAV_3 LEFT_NAV_4>; };
+    };
+};
