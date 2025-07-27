@@ -1,0 +1,57 @@
+/*
+ * config/at_ease_keys_04.keymap
+ *
+ * キーマップ定義ファイル
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+// レイヤー名の定義
+#define BASE  0
+#define LOWER 1
+#define RAISE 2
+
+// レイヤー切り替えのショートカット
+#define L_LOW  &mo LOWER  // 押している間 LOWER レイヤー
+#define R_RAISE &mo RAISE  // 押している間 RAISE レイヤー
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        // --- レイヤー 0: Base Layer (QWERTY配列) ---
+        default_layer {
+            bindings = <
+            // |-------------------- LEFT HAND (32 keys) --------------------|   |-------------------- RIGHT HAND (28 keys) -------------------|
+            &kp Q       &kp W       &kp E       &kp R       &kp T       &kp LCTRL   &kp LALT    &kp LGUI        &kp RGUI    &kp RALT    &kp Y       &kp U       &kp I       &kp O       &kp P       
+            &kp A       &kp S       &kp D       &kp F       &kp G       &kp LSHFT   &kp BSPC    &kp TAB         &kp ENTER   &kp SPACE   &kp H       &kp J       &kp K       &kp L       &kp SEMI    
+            &kp Z       &kp X       &kp C       &kp V       &kp B       &none       &none       &none           &none       &none       &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH    
+            &kp GRAVE   &kp N1      &kp N2      &kp N3      &kp N4      &kp N5      &L_LOW      &kp ESC         &kp DEL     &R_RAISE    &kp N6      &kp N7      &kp N8      &kp N9      &kp N0      
+            >;
+        };
+
+        // --- レイヤー 1: Lower Layer (記号とファンクションキー) ---
+        lower_layer {
+            bindings = <
+            // |-------------------- LEFT HAND (32 keys) --------------------|   |-------------------- RIGHT HAND (28 keys) -------------------|
+            &kp EXCL    &kp AT      &kp HASH    &kp DLLR    &kp PRCNT   &trans      &trans      &trans          &trans      &trans      &kp CARET   &kp AMPS    &kp ASTRK   &kp LPAR    &kp RPAR
+            &kp F1      &kp F2      &kp F3      &kp F4      &kp F5      &trans      &trans      &trans          &trans      &trans      &kp F6      &kp F7      &kp F8      &kp F9      &kp F10
+            &kp F11     &kp F12     &bt BT_CLR  &bt BT_NXT  &bt BT_PRV  &none       &none       &none           &none       &none       &kp UNDS    &kp PLUS    &kp LCBRC   &kp RCBRC   &kp BSLH
+            &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans          &trans      &trans      &kp MINUS   &kp EQUAL   &kp LBRC    &kp RBRC    &kp PIPE
+            >;
+        };
+
+        // --- レイヤー 2: Raise Layer (矢印キーとメディアキー) ---
+        raise_layer {
+            bindings = <
+            // |-------------------- LEFT HAND (32 keys) --------------------|   |-------------------- RIGHT HAND (28 keys) -------------------|
+            &none       &none       &none       &none       &none       &trans      &trans      &trans          &trans      &trans      &kp HOME    &kp PG_DN   &kp PG_UP   &kp END     &none
+            &kp LCTRL   &kp LSHFT   &kp LALT    &kp LGUI    &none       &trans      &trans      &trans          &trans      &trans      &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &none
+            &none       &none       &none       &none       &none       &none       &none       &none           &none       &none       &kp C_PREV  &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT  &kp C_PP
+            &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans          &trans      &trans      &none       &none       &none       &none       &none
+            >;
+        };
+    };
+};
