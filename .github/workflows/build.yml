@@ -1,11 +1,10 @@
 # .github/workflows/build.yml
 #
 # ZMKファームウェアのビルドを定義するGitHub Actionsワークフロー
-# 最新の unified-zmk-config-template に対応した形式です。
+# YAML構文エラーを修正したバージョンです。
 
 name: 'Build ZMK Firmware'
 
-# push, pull_request, または手動実行(workflow_dispatch)をトリガーに実行
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
@@ -14,9 +13,9 @@ jobs:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
     # ビルドワークフローに渡すパラメータ
     with:
-      # ビルドするキーボードの組み合わせを定義
-      matrix:
-        # include リスト内にビルドしたい board と shield のペアを記述
+      # 'matrix' に渡す値を、'|' を使って複数行の文字列として定義します。
+      # これにより、後続の 'include:' が正しく解釈されます。
+      matrix: |
         include:
           # 左手用のビルド設定
           - board: seeed_xiao_nrf52840
