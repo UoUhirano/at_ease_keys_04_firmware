@@ -1,0 +1,7 @@
+# config/boards/shields/at_ease_keys_04/Kconfig.def
+
+if SHIELD_AT_EASE_KEYS_04_LEFT || SHIELD_AT_EASE_KEYS_04_RIGHT
+
+shield = at_ease_keys_04
+
+endif
