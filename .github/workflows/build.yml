@@ -1,6 +1,26 @@
-name: Build ZMK firmware
+# .github/workflows/build.yml
+#
+# ZMKファームウェアのビルドを定義するGitHub Actionsワークフロー
+# 最新の unified-zmk-config-template に対応した形式です。
+
+name: 'Build ZMK Firmware'
+
+# push, pull_request, または手動実行(workflow_dispatch)をトリガーに実行
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
+    # ZMK公式のビルドワークフローを再利用する
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    # ビルドワークフローに渡すパラメータ
+    with:
+      # ビルドするキーボードの組み合わせを定義
+      matrix:
+        # include リスト内にビルドしたい board と shield のペアを記述
+        include:
+          # 左手用のビルド設定
+          - board: seeed_xiao_nrf52840
+            shield: at_ease_keys_04_left
+          # 右手用のビルド設定
+          - board: seeed_xiao_nrf52840
+            shield: at_ease_keys_04_right
