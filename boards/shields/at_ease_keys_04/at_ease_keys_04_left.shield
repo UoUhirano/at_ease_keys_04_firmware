@@ -1,0 +1,5 @@
+identifier: at_ease_keys_04_left
+type: shield
+kconfig: Kconfig.shield
+features:
+  - keys
