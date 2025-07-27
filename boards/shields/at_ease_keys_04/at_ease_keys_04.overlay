@@ -1,0 +1,40 @@
+/*
+ * config/boards/shields/at_ease_keys_04/at_ease_keys_04.overlay
+ *
+ * 左右共通のハードウェア定義ファイル
+ */
+
+#include <zephyr/dt-bindings/gpio/gpio.h>
+#include <dt-bindings/zmk/matrix_transform.h>
+
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+    };
+
+    kscan0: kscan_0 {
+        compatible = "zmk,kscan-gpio-matrix";
+        label = "KSCAN";
+        diode-direction = "col2row";
+
+        // 行 (Row) のピン設定 (計4本)
+        row-gpios
+            = <&gpio1 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // ROW0 -> D6 (P1.11)
+            , <&gpio0  5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // ROW1 -> D5 (P0.05)
+            , <&gpio0  4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // ROW2 -> D4 (P0.04)
+            , <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // ROW3 -> D3 (P0.29)
+            ;
+
+        // 列 (Col) のピン設定 (左手側の最大列数である8本を定義)
+        col-gpios
+            = <&gpio0  2 GPIO_ACTIVE_HIGH> // COL0 -> D0 (P0.02)
+            , <&gpio0  3 GPIO_ACTIVE_HIGH> // COL1 -> D1 (P0.03)
+            , <&gpio0 28 GPIO_ACTIVE_HIGH> // COL2 -> D2 (P0.28)
+            , <&gpio1 15 GPIO_ACTIVE_HIGH> // COL3 -> D10 (P1.15)
+            , <&gpio1 14 GPIO_ACTIVE_HIGH> // COL4 -> D9 (P1.14)
+            , <&gpio1 13 GPIO_ACTIVE_HIGH> // COL5 -> D8 (P1.13)
+            , <&gpio1 12 GPIO_ACTIVE_HIGH> // COL6 -> D7 (P1.12)
+            , <&gpio0 10 GPIO_ACTIVE_HIGH> // COL7 -> NFC1 (P0.10)
+            ;
+    };
+};
